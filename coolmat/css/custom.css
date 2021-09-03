@@ -1,0 +1,415 @@
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+body {
+    font-family: 'Hanna', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #000;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* reusable class for inner containers */
+.inner-container {
+    max-width: 1380px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* reusable class for .section-heading */
+.section-heading{
+    font-size: 20px;
+    padding-top:50px;
+    padding-bottom: 50px;
+    border-bottom: solid 1px #ccc;
+    text-align: center;
+    text-transform: lowercase;
+
+    margin-bottom: 50px;
+}
+
+
+/* HEADER element (header.php) - logo, navmenu, lang select*/
+
+.site-header {
+    padding: 30px;
+    border-bottom: solid 1px #ccc;
+}
+
+.header-inner{
+    /* max-width: 1380px;
+    margin-left: auto;
+    margin-right: auto; */
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.logo,
+.language-select{
+    display: block;
+    width: 80px;
+}
+
+.language-select{
+    text-align: right;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+    padding-left:0;
+    margin:0;
+}I
+
+.menu-item{
+    margin-left: 15px;
+    margin-right: 15px;
+    text-transform: lowercase;
+}
+
+/* HERO element (index.php) - bg image, text, description */
+
+.hero {
+    padding: 160px 30px 220px 30px;
+    background-image: url('../assets/intro-bg.svg');
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat; 
+    position: relative;
+}
+
+.hero-text{
+    font-size: 180px;
+    line-height: 1;
+    color: #FF0066;
+    text-align: center;
+    margin:0;
+}
+
+.hero-sitename{
+    color:#000;
+}
+
+.hero-description{
+    margin: 0;
+    position: absolute;
+    bottom: 48px;
+    left: 0;
+    width:100%;
+    text-align:center;
+}
+
+.magenta{
+    color: #FF0066;
+}
+
+/* INTRO element (index.php) - bgimage, section-heading(title), description */
+
+.intro{
+    background-image: url('../assets/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-top: 310px;
+    padding-bottom: 250px;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.intro-inner{
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #fff;
+
+    text-shadow: 0 2px 0 rgba(0,0,0,.2);
+}
+
+.intro-title{
+    font-size:20px;
+    border-bottom: 3px solid #fff;
+    padding-bottom: 1px;
+    display:inline-block;
+    margin-top:0;
+    margin-bottom:48px;
+}
+
+.intro-description{
+    font-size: 50px;
+    margin:0;
+    line-height:1.1;
+}
+
+.intro-description p{
+    margin:0;
+}
+
+.yellow{
+    color:#F8E71C;
+}
+
+/* MENU ITEMS (content.php) */
+
+.entry-header{
+    padding:10px 20px;
+    background-color: #FF0066;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.entry-title,
+.entry-price,
+.entry-no{
+    font-size: 16px;
+    color: #fff;
+    line-height: 1;
+    margin: 0;
+    padding:0;
+}
+
+.entry-title,
+.entry-price{
+    z-index: 1;
+}
+
+.post{
+    position: relative;
+    /* since item-no is absolute position top:0 add padding to shift rest of post downward */
+    padding-top: 60px;
+}
+
+.entry-no{
+    position: absolute;
+    left: 50%;
+    top:0;
+    height: 80px;
+    width: 80px;
+    background-color: #fff;
+    border: solid 20px #FF0066;
+    border-radius: 50%;
+    /* absolute position taken from top left of box
+     to offset circle by 50% of width */
+    transform: translateX(-50%);
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* over write default wordpress cms added image attributes */
+.wp-post-image{
+    max-width: 100%;
+    width: auto !important;
+    height: auto !important;
+    aspect-ratio: auto !important;
+    display:block;
+}
+
+/* gaps between image and text - anchor tag */
+.post-thumbnail{
+    display:block;
+    /* disable link from being clicked */
+    pointer-events: none; 
+}
+
+/* FOOD GRID, MAP GRID (index.php) */
+
+.menu-title{
+        font-size:20px;
+        border-bottom: 3px solid #000;
+        padding-bottom: 1px;
+        display:inline-block;
+}
+
+.food-grid, .map-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px 20px; 
+    /* 50 for rowgap 20 for columngap */
+    max-width: 1220px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* DIRECTIONS element (index.php) - section-heading > locations > location 
+for individual location - map>map-inner>iframe
+location-info>location-text>h3,p */
+
+/* to align all location-info text vertically center */
+.location-info{
+    display:flex;
+    align-items:center;
+}
+
+/* override default width height of the embedded map */
+.map-inner{
+    position: relative;
+    padding-bottom: 75%;
+}
+.map-inner iframe{
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.location-text{
+    width: 480px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.location-text h3 {
+    font-size: 12px;
+    margin: 0;
+}
+
+.location-text p{
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* FOOTER (footer.php) - footer.site-footer > div.site-info > div.footer-copyright,div.footer-social */
+.site-footer{
+    padding: 50px 30px 20px 30px;
+    border-top: 1px solid #CCC;
+    font-family: Helvetica, 'Sans Serif';
+    font-size: 12px;
+}
+
+.site-info{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-social {
+    display:flex;
+}
+
+.social-link{
+    margin-left:5px;
+    display:block;
+}
+
+.social-link img{
+    display: block;
+}
+
+
+
+
+
+/* --------RESPONSIVE STYLES------------*/
+
+@media (max-width: 1100px) {
+    .entry-no {
+        width:60px;
+        height:60px;
+        border-width:15px;
+    }
+
+    .post{
+        padding-top: 45px; 
+        /* half of height which is now 90px */
+    }
+
+    .hero{
+        padding-top:100px;
+        padding-bottom:160px;
+    }
+
+    .hero-text{
+        font-size:90px;
+    }
+
+    .intro{
+        padding-top:105px;
+        padding-bottom:120px;
+    }
+
+    .intro-title, .intro-description{
+        font-size:4vw;
+    }
+}
+
+@media (max-width: 680px) {
+    .site-header{
+        padding:20px;
+    }
+
+    .logo .language-select{
+        width: 50px;
+    }
+
+    .menu-item{
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size: 14px;
+    }
+
+    .menu-item span {
+        display:none;
+    }
+
+    .hero-text{
+        font-size: 64px;;
+    }
+
+    .hero-description{
+        font-size:16px;
+    }
+
+    .intro{
+        padding-top:85px;
+        padding-bottom:105px;
+    }
+
+    .intro-title{
+        font-size:21px;
+        margin-bottom:20px;
+    }
+
+    .intro-description{
+        font-size:36px;
+    }
+
+    .intro-description br{
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .entry-no {
+        width:30px;
+        height:30px;
+        border-width:4px;
+    }
+
+    .post{
+        padding-top: 19px; 
+        /* half of height which is now 90px */
+    }
+
+    .hero {
+        padding-top:60px;
+        padding-bottom:120px;
+    }
+
+    .hero-description{
+        bottom:20px;
+    }
+
+    .intro-description{
+        font-size:21px;
+    }
+
+}
+
+
