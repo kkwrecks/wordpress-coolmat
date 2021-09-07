@@ -187,3 +187,56 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 // troubleshoot admin notice at bottom of page
 remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
+
+
+
+//--------FUNCTIONS--------//
+
+// Get Category Description function
+function get_category_description($query) {
+	query_posts( $query . '&posts_per_page=1' );
+	while ( have_posts() ) {
+		the_post();
+		$category = get_the_category();
+		echo $category[0]->category_description;
+	}
+}
+// to use this function and get it to return category_description, there has to be at least one post using that category
+// 1. if category is a custom_post_type, use <?php get_category_description('post_type=location'); to return location category description
+// 2. if posts with category have custom_post_type, use <?php get_category_description('category_name=menu');
+
+// Register Custom Post Type - INTROS
+function custom_post_type() {
+
+	$labels = array(
+		'name'                  => _x( 'Intros', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Intro', 'Post Type Singular Name', 'text_domain' )
+	);
+	$args = array(
+		'labels'                => $labels,
+		'taxonomies'            => array( 'category'),
+		'public'                => true,
+		'menu_icon'           => 'dashicons-text-page'
+	);
+	register_post_type( 'intro', $args );
+
+}
+add_action( 'init', 'custom_post_type', 0 );
+
+// Register Custom Post Type - LOCATIONS
+function add_locations() {
+
+	$labels = array(
+		'name'                  => _x( 'Locations', 'Post Type General Name', 'text_domain' ),
+		'singular_name'         => _x( 'Location', 'Post Type Singular Name', 'text_domain' )
+	);
+	$args = array(
+		'labels'                => $labels,
+		'taxonomies'            => array( 'category'),
+		'public'                => true,
+		'menu_icon'           => 'dashicons-location'
+	);
+	register_post_type( 'location', $args );
+
+}
+add_action( 'init', 'add_locations', 0 );
