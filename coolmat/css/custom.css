@@ -67,11 +67,12 @@ a {
     margin:0;
 }I
 
-.menu-item{
+.menu-item {
     margin-left: 15px;
     margin-right: 15px;
-    text-transform: lowercase;
+    text-transform: uppercase;
 }
+
 
 /* HERO element (index.php) - bg image, text, description */
 
@@ -344,7 +345,7 @@ location-info>location-text>h3,p */
         padding:20px;
     }
 
-    .logo .language-select{
+    .logo, .language-select{
         width: 50px;
     }
 
@@ -410,6 +411,11 @@ location-info>location-text>h3,p */
         font-size:21px;
     }
 
+    .food-grid, 
+    .map-grid{
+        grid-template-columns: 1fr;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
 }
-
-
