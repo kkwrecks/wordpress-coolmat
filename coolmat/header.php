@@ -56,7 +56,9 @@
 			
 			<!-- todo: make this work -->
 			<div class="language-select">
-				KOR | ENG
+				<a lang="ko-KR" hreflang="ko-KR" href="<?php echo site_url('/kr'); ?>">KR</a>
+				 | 
+				<a lang="en-GB" hreflang="en-GB" href="<?php echo site_url(); ?>">EN</a>
 			</div>
 		</div>
 
