@@ -63,7 +63,7 @@ get_header();
 
 <!-- -------INTRO SECTION--------------->
 
-		<!-- HARDCODED VERSION -->
+		<!-- 1. HARDCODED VERSION -->
 		<!-- <div class="intro" id="intro">
 			<div class="intro-inner">
 				<h2 class="intro-title" >introducing <?php bloginfo('name'); ?></h2>
@@ -78,12 +78,26 @@ get_header();
 			</div>
 		</div> -->
 
-<!---------INTRO SECTION--------------->
-		<!-- DYNAMIC - using POSTS category-intro -->
-		<?php query_posts(
+		<!-- 2. DYNAMIC VERSION - using POSTS category-intro -->
+		<!-- <?php query_posts(
 		'category_name=intro 
 		&posts_per_page=1' 
 		) ?>
+
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
+		<div class="intro" id="intro">
+			<div class="intro-inner">
+				<h2 class="intro-title"> <?php the_title() ?> </h2>
+				<div class="intro-description"> <?php the_content() ?> </div>
+			</div>
+		</div>
+
+		<?php endwhile; endif; ?> -->
+
+<!---------INTRO SECTION--------------->
+		<!-- 3. DYNAMIC VERSION - using CUSTOM POST category-intro -->
+		<?php query_posts('posts_per_page=1 & post_type=intro') ?>
 
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
@@ -98,7 +112,9 @@ get_header();
 
 <!-- -------FOOD SECTION--------------->
 
-		<div class="food section-heading" id="food"><h3 class="menu-title">Menu</h3></div>
+		<div class="food section-heading" id="food"><h3 class="menu-title">
+			<?php get_category_description('category_name=menu') ?>
+		</h3></div>
 		<!-- where the posts are -->
 		<div class="food-grid">
 			<?php
@@ -129,40 +145,67 @@ get_header();
 
 <!-- -------DIRECTIONS SECTION--------------->
 
-		<div class="directions section-heading" id="directions">directions to coolmat</div>
-		
-		<!-- locations - now one may have more in future -->
+		<div class="directions section-heading" id="directions">
+		<?php get_category_description('post_type=location'); ?>
+		</div>
+
 		<div class="locations">
 
-		<!-- for each individual location  -->
+	<!-- 2. DYNAMIC LOCATION INFO from post_type=location -->
+			<!-- query for location post_types -->
+			<?php query_posts('posts_per_page=1 & post_type=location') ?>
+			<!-- loop over the queried posts -->
+			<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+
+			<!-- for each individual location  -->
 			<div class="location map-grid">
 
-				<!-- map on left -->
 				<div class="map">
 					<div class="map-inner">
-						<!-- map embed goes in here -->
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50599.76924944211!2d126.9478403017802!3d37.567182002695745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2eef9ff47d5%3A0xb0e848d5351e04cf!2z6rmA67Cl7J2867KI6rCA!5e0!3m2!1sen!2ssg!4v1630343775236!5m2!1sen!2ssg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+					<!-- insert query for advance custom field - map paste entire embedded iframe in field -->
+					<?php if( get_field('map') ):
+						the_field('map');
+					endif; ?>
 					</div>
 				</div>
 
-				<!-- info on right -->
 				<div class="location-info">
 					<div class="location-text">
-						<!-- location info goes here -->
-						<h3>Business Name</h3>
-						<p>coolmat</p>
-
-						<h3>Address</h3>
-						<p>284-10 Yeomchang-dong, Gangseo-gu, Seoul</p>
-
-						<h3>Phone Number</h3>
-						<p>02-9999-9999</p>
-
-						<h3>Direction</h3>
-						<p>Get out of gate 3 and walk straight down for about 200 meters. You will see Cool Mat on your left.</p>
-
+						<?php the_content() ?>
 					</div>
 				</div>
+			
+			</div>
+			<?php endwhile; endif; ?>
+
+		<!-- 1. HARDCODED LOCATION INFO for location info description <div> -->
+
+					<!-- for each individual location  -->
+					<!-- <div class="location map-grid"> -->
+						<!-- map on left -->
+						<!-- <div class="map"> -->
+							<!-- <div class="map-inner"> -->
+								<!-- map embed goes in here -->
+								<!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50599.76924944211!2d126.9478403017802!3d37.567182002695745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2eef9ff47d5%3A0xb0e848d5351e04cf!2z6rmA67Cl7J2867KI6rCA!5e0!3m2!1sen!2ssg!4v1630343775236!5m2!1sen!2ssg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+							</div>
+						</div> -->
+
+						<!--<div class="location-info">
+						<div class="location-text"> -->
+							<!-- location info goes here -->
+							<!-- <h3>Business Name</h3>
+							<p>coolmat</p>
+
+							<h3>Address</h3>
+							<p>284-10 Yeomchang-dong, Gangseo-gu, Seoul</p>
+
+							<h3>Phone Number</h3>
+							<p>02-9999-9999</p>
+
+							<h3>Direction</h3>
+							<p>Get out of gate 3 and walk straight down for about 200 meters. You will see Cool Mat on your left.</p>
+						</div>
+					</div> -->
 
 			</div>
 		</div>
